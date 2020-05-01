@@ -13,6 +13,10 @@ git reset ----保留工作目录,并清空暂存区.一般工作时用此命令
 git status----查看git状态.
 git log ----查看提交的版本记录,可查看到commit号,如果需要回退到某个版本需要用到{git reset --hard 版本号}.
 
+
+
+
+//远程仓库
 git remote add origin https://github.com/wiwmmbb/gwl.git --将本地仓库添加到远程仓库,http开头的是仓库地址 也可以改为ssh地址:git@github.com:wiwmmbb/gwl.git
 git push -u origin master -- 首次提交到远程仓库,需要写-u后面的内容
 git clone
@@ -50,3 +54,5 @@ git merge XXXX----将XXXX的分支合并到当前分支,所以如果要将其他
 1.每次提交都需要输入用户名和密码
 ====>是因为采用了http的模式,有2种方法解决:a.输入"git config –global credential.helper store"保存账号密码,输入一次就会自动保存以后就不需要再输入了;b.修改为git方式----git remote rm origin----git remote add origin git@github.com:wiwmmbb/gwl.git----git push origin
 ====>可通过"cat ~/.git-credentials"查看本地记录的账号密码
+2.安装linux git后一直无法连接远程服务器
+====>是因为使用了http协议,权限不够,必须使用ssh的协议,在绑定远程仓库时使用"git remote add git@github.com:wiwmmbb/gwl"就可以了.
