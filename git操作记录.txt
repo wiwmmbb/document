@@ -1,0 +1,52 @@
+1.安装git,注意不是"git hub".
+2.新建一个工作文件夹,右键,选择"git bash here",这样git工作区就完成了.
+git init----将此目录作为git的工作区,初始化它.会产生一个".git"的文件夹
+git config --global user.name "用户名"----配置git的用户名
+git config --global user.email "邮箱地址"----配置git的邮箱地址
+git config --list ----查看git的配置信息
+ssh-keygen -t rsa -C '邮箱地址@qq.com'----生成ssh的公钥,用于访问远程仓库
+git add XXX----将某个文件加入到暂存区
+git commit -m "xxxx"---提交修改到本地仓库.双引号内是修改说明.必须要有-m,否则报错
+git reset --hard HEAD----把仓库的版本直接更新到暂存区和工作目录,"HEAD"是指的仓库的当前版本指针,用此命令可以快速的把仓库的版本覆盖暂存区和工作目录
+git reset --soft HEAD----保留工作目录的内容不变,把暂存区的内容用仓库的版本覆盖掉,并且暂存区会把工作目录修改的内容放入暂存区.
+git reset ----保留工作目录,并清空暂存区.一般工作时用此命令
+git status----查看git状态.
+git log ----查看提交的版本记录,可查看到commit号,如果需要回退到某个版本需要用到{git reset --hard 版本号}.
+
+git remote add origin https://github.com/wiwmmbb/gwl.git --将本地仓库添加到远程仓库,http开头的是仓库地址 也可以改为ssh地址:git@github.com:wiwmmbb/gwl.git
+git push -u origin master -- 首次提交到远程仓库,需要写-u后面的内容
+git clone
+
+//标签管理
+git tag----查看所有标签
+git tag XXXX----创建标签 XXXX代表创建的标签名,入"v1"等
+git push origin XXXX----发布标签,把创建的标签发布到远程仓库
+git tag -d XXXX----删除标签
+git push origin:refs/tags/XXXX----删除远程标签
+
+
+
+//分支管理
+git branch----查看分支
+git branch XXXX----创建新的分支
+git status----查看状态,可以查看当前处于哪个分支,前面有"*"的代表处于哪个分支
+git checkout XXXX----切换到XXXX分支
+git branch -d XXXX----删除XXXX分支
+git merge XXXX----将XXXX的分支合并到当前分支,所以如果要将其他分支合并到master分支,需要先切换到master分支
+
+
+
+
+
+
+
+
+
+
+
+
+
+//git可能出现的问题解决
+1.每次提交都需要输入用户名和密码
+====>是因为采用了http的模式,有2种方法解决:a.输入"git config –global credential.helper store"保存账号密码,输入一次就会自动保存以后就不需要再输入了;b.修改为git方式----git remote rm origin----git remote add origin git@github.com:wiwmmbb/gwl.git----git push origin
+====>可通过"cat ~/.git-credentials"查看本地记录的账号密码
